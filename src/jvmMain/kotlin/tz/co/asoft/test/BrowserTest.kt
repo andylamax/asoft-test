@@ -5,8 +5,8 @@ import kotlinx.coroutines.awaitAll
 import org.openqa.selenium.WebDriver
 
 open class BrowserTest(
-    val url: String = "http://localhost:8088",
-    val drivers: List<WebDriver> = injection.drivers()
+        val url: String = "http://localhost:8088",
+        val drivers: List<WebDriver> = injection.drivers()
 ) : AsyncTest() {
     init {
         drivers.forEach {
