@@ -6,13 +6,13 @@ import kotlinx.coroutines.runBlocking
 import tz.co.asoft.logging.Logger
 import kotlin.coroutines.CoroutineContext
 
-actual fun asyncTest(block: suspend () -> Unit) = runBlocking{
+actual fun asyncTest(block: suspend () -> Unit) = runBlocking {
     block()
 }
 
 actual abstract class AsyncTest actual constructor() : CoroutineScope {
     actual override val coroutineContext: CoroutineContext = Dispatchers.Default
-    actual val log by lazy { Logger(this::class.simpleName!!) }
+    actual val log by lazy { Logger("Async Test") }
     actual fun asyncTest(block: suspend () -> Unit) = runBlocking {
         block()
     }

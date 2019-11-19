@@ -12,7 +12,7 @@ actual fun asyncTest(block: suspend () -> Unit) = runBlocking {
 
 actual abstract class AsyncTest actual constructor() : CoroutineScope {
     actual override val coroutineContext: CoroutineContext = Dispatchers.Default
-    actual val log by lazy { Logger(this::class.simpleName!!) }
+    actual val log by lazy { Logger("Async Test") }
     actual fun asyncTest(block: suspend () -> Unit) = runBlocking {
         block()
     }
