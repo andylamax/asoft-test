@@ -1,7 +1,6 @@
 package tz.co.asoft.test.enzyme
 
 import kotlinext.js.jsObject
-import kotlinx.html.injector.InjectByTagName
 import react.*
 import kotlin.reflect.KClass
 

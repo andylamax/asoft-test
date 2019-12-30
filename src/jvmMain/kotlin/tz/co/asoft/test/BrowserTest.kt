@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver
 
 open class BrowserTest(
         val url: String = "http://localhost:8088",
-        val drivers: List<WebDriver> = injection.drivers()
+        val drivers: List<WebDriver> = drivers()
 ) : AsyncTest() {
     init {
         drivers.forEach {
@@ -20,7 +20,7 @@ open class BrowserTest(
     fun browserTest(body: suspend WebDriver.() -> Unit) = asyncTest {
         drivers.map {
             async {
-                log.i("Running with ${it.javaClass.name}")
+                println("Running with ${it.javaClass.name}")
                 it.visit()
                 it.body()
             }

@@ -1,4 +1,4 @@
-package tz.co.asoft.enzyme.adapter.react16
+package tz.co.asoft.test.enzyme.adapter.react16
 
 import tz.co.asoft.test.enzyme.EnzymeAdapter
 

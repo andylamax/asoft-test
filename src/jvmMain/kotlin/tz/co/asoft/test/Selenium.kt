@@ -2,7 +2,6 @@ package tz.co.asoft.test
 
 import kotlinx.coroutines.delay
 import org.openqa.selenium.*
-import tz.co.asoft.persist.tools.Cause
 
 fun SearchContext.find(selector: String) = findElement(By.cssSelector(selector))!!
 fun SearchContext.findAll(selector: String): List<WebElement> = findElements(By.cssSelector(selector))
@@ -17,8 +16,8 @@ fun SearchContext.findSubmit() = findByAttr("type", "submit")
 suspend fun WebDriver.waitUntil(predicate: () -> Boolean) {
     delay(500)
     try {
-        if (!predicate()) throw Cause("Condition is not met, waiting")
-    } catch (c: Cause) {
+        if (!predicate()) throw Throwable("Condition is not met, waiting")
+    } catch (c: Throwable) {
         waitUntil(predicate)
     }
 }
