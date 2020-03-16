@@ -35,10 +35,6 @@ android {
         }
     }
 
-    lintOptions {
-
-    }
-
     buildTypes {
         val release by getting {
             isMinifyEnabled = false
