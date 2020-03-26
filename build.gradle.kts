@@ -1,11 +1,11 @@
 plugins {
-    kotlin("multiplatform") version ("1.3.70")
+    kotlin("multiplatform") version ("1.4-M1")
     id("com.android.library") version ("3.6.0")
     id("maven-publish")
 }
 
 object versions {
-    val coroutines = "1.3.4"
+    val coroutines = "1.3.5-1.4-M1"
     val selenium = "4.0.0-alpha-4"
     val espresso = "3.2.0"
     val test_runner = "1.2.0"
@@ -13,12 +13,13 @@ object versions {
 }
 
 group = "tz.co.asoft"
-version = "4.2.1"
+version = "4.2.1-1.4-M1"
 
 repositories {
     google()
     jcenter()
     maven(url = "https://jitpack.io")
+    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
 }
 
 android {
@@ -63,6 +64,7 @@ kotlin {
     }
 
     js {
+        produceKotlinLibrary()
         compilations.all {
             kotlinOptions {
                 metaInfo = true
@@ -79,12 +81,6 @@ kotlin {
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${versions.coroutines}")
                 api(kotlin("test-common"))
                 api(kotlin("test-annotations-common"))
-            }
-        }
-
-        val commonTest by getting {
-            dependencies {
-
             }
         }
 
@@ -107,12 +103,6 @@ kotlin {
             }
         }
 
-        val androidTest by getting {
-            dependencies {
-
-            }
-        }
-
         val jvmMain by getting {
             dependsOn(jvmCommonMain)
             dependencies {
@@ -121,23 +111,11 @@ kotlin {
             }
         }
 
-        val jvmTest by getting {
-            dependencies {
-
-            }
-        }
-
         val jsMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-js"))
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${versions.coroutines}")
                 api(kotlin("test-js"))
-            }
-        }
-
-        val jsTest by getting {
-            dependencies {
-
             }
         }
     }
