@@ -4,16 +4,8 @@ plugins {
     id("maven-publish")
 }
 
-object versions {
-    val coroutines = "1.3.5-1.4-M1"
-    val selenium = "4.0.0-alpha-4"
-    val espresso = "3.2.0"
-    val test_runner = "1.2.0"
-    val test_rules = "1.2.0"
-}
-
 group = "tz.co.asoft"
-version = "4.2.1-1.4-M1"
+version = rootProject.version
 
 repositories {
     google()
@@ -39,7 +31,10 @@ android {
     buildTypes {
         val release by getting {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -78,7 +73,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${versions.coroutines}")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${versions.kotlinx.coroutines}")
                 api(kotlin("test-common"))
                 api(kotlin("test-annotations-common"))
             }
@@ -96,17 +91,17 @@ kotlin {
         val androidMain by getting {
             dependsOn(jvmCommonMain)
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}")
-                api("androidx.test.espresso:espresso-core:${versions.espresso}")
-                api("androidx.test:runner:${versions.test_runner}")
-                api("androidx.test:rules:${versions.test_rules}")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlinx.coroutines}")
+                api("androidx.test.espresso:espresso-core:${versions.androidx.espresso}")
+                api("androidx.test:runner:${versions.androidx.test_runner}")
+                api("androidx.test:rules:${versions.androidx.test_rules}")
             }
         }
 
         val jvmMain by getting {
             dependsOn(jvmCommonMain)
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinx.coroutines}")
                 api("org.seleniumhq.selenium:selenium-java:${versions.selenium}")
             }
         }
@@ -114,7 +109,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-js"))
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${versions.coroutines}")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${versions.kotlinx.coroutines}")
                 api(kotlin("test-js"))
             }
         }
